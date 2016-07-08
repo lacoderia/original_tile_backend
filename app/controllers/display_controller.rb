@@ -1,7 +1,8 @@
 class DisplayController < ApplicationController
 
   def index
-    render json: {test: "ok"}
+    test = {test: "ok"}
+    render json: TestSerializer.serialize(test)
   end
 
 end
