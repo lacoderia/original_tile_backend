@@ -1,4 +1,6 @@
 Rails.application.configure do
+
+  ENV['HOST'] = "servicios.coderia.mx"  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
@@ -23,7 +25,7 @@ Rails.application.configure do
   # config.assets.css_compressor = :sass
 
   # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
+  config.assets.compile = true
 
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
@@ -44,7 +46,7 @@ Rails.application.configure do
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
-  config.log_level = :debug
+  config.log_level = :error
 
   # Prepend all log lines with the following tags.
   config.log_tags = [ :request_id ]
@@ -83,4 +85,25 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  ENV['ADDRESS'] = "smtp.gmail.com"
+  ENV['DOMAIN_NAME'] = "coderia.mx"
+  ENV['MAIL_USERNAME'] = "benjamin@coderia.mx"
+  ENV['MAIL_PASSWORD'] = ""
+
+   config.action_mailer.smtp_settings = {
+    address: ENV["ADDRESS"],
+    port: 587,
+    domain: ENV["DOMAIN_NAME"],
+    authentication: "plain",
+    enable_starttls_auto: true,
+    user_name: ENV["MAIL_USERNAME"],
+    password: ENV["MAIL_PASSWORD"]
+  }
+  # ActionMailer Config
+  config.action_mailer.default_url_options = { :host => ENV["HOST"] }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
+
 end

@@ -1,5 +1,18 @@
 source 'https://rubygems.org'
 
+gem 'cancancan'
+#gem 'devise'
+gem 'devise',      '> 4.x'
+gem 'devise_token_auth'
+gem 'rack-cors', :require => 'rack/cors'
+gem 'activeadmin', github: 'activeadmin'
+
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
+gem 'ransack',    github: 'activerecord-hackery/ransack'
+gem 'formtastic', github: 'justinfrench/formtastic'
+gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
+# To fix a Draper deprecation error
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
@@ -15,7 +28,6 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'rack-cors', :require => 'rack/cors'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -34,6 +46,8 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  # To reload UI changes
+  gem 'guard-livereload'
 end
 
 group :development do
@@ -43,8 +57,24 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'pry-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 #gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+group :test do
+  # Testing framework
+  #gem 'rspec-rails'
+  gem 'rspec-rails', '>= 3.5.0.beta1'
+  # Functional testing
+  gem 'capybara'
+  # Testing factories
+  gem "factory_girl_rails"
+  # Testing coverage
+  gem 'simplecov', :require => false
+  # Clean database after each test
+  gem 'database_cleaner',            github: 'pschambacher/database_cleaner', branch: 'rails5.0', ref: '430a957'
+  #gem 'database_cleaner'
+  # Manipulate time in tests
+  gem 'timecop'
+end
