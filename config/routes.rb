@@ -15,10 +15,12 @@ Rails.application.routes.draw do
   
   resources :colors
   resources :tiles
-  resources :projects
+  resources :projects do
+    collection do
+      get 'by_user_id', :to => 'projects#by_user_id'
+    end
+  end
   resources :roles
   resources :users
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  match 'index', :to => 'display#index', :via => [:get, :post, :options]
   
 end

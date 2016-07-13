@@ -11,8 +11,8 @@ gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'ransack',    github: 'activerecord-hackery/ransack'
 gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
-# To fix a Draper deprecation error
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'active_model_serializers'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
