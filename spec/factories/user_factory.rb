@@ -6,6 +6,7 @@ FactoryGirl.define do
     last_name 'User'
     password '12345678'
     password_confirmation '12345678'
+    active true
     roles {[FactoryGirl.create(:internal_role)]}
   end
 

@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   end
   resources :roles
   resources :users
+
+  root to: "admin/dashboard#index"  
   
 end

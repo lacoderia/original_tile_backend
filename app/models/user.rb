@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_and_belongs_to_many :roles
   has_many :projects
 
+  scope :inactive, -> {where(active: false)}
+  scope :active, -> {where(active: true)}
+
   def role?(role)
     return !!self.roles.find_by_name(role)
   end

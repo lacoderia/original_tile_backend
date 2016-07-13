@@ -4,7 +4,7 @@ FactoryGirl.define do
   end
 
   factory :external_role, class: Role do
-    name 'external_admin'
+    name 'external_user'
   end
   
 end
