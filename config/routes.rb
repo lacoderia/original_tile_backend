@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   resources :tiles
   resources :projects do
     collection do
-      get 'by_user_id', :to => 'projects#by_user_id'
+      get 'by_user', :to => 'projects#by_user'
     end
   end
   resources :roles

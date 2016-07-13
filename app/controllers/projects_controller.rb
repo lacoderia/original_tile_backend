@@ -3,9 +3,9 @@ class ProjectsController < ApiController
   
   before_action :authenticate_user!
     
-  def by_user_id 
+  def by_user
     begin
-      projects = Project.by_user_id(params[:user_id])
+      projects = Project.by_user_id(current_user.id)
       render json: projects
     rescue Exception => e
       project = Project.new

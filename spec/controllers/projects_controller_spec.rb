@@ -11,7 +11,7 @@ feature 'ProjectsController' do
       access_token_1, uid_1, client_1, expiry_1, token_type_1 = get_headers
       set_headers access_token_1, uid_1, client_1, expiry_1, token_type_1
 
-      visit "#{by_user_id_projects_path}?user_id=#{user_01.id}"
+      visit by_user_projects_path
       response = JSON.parse(page.body)
       expect(response["projects"][0]["id"]).to eql project.id
 
@@ -19,7 +19,7 @@ feature 'ProjectsController' do
 
     it 'should get error for not logged in' do
 
-      visit "#{by_user_id_projects_path}?user_id=#{user_01.id}"
+      visit by_user_projects_path
       response = JSON.parse(page.body)
       expect(page.status_code).to be 401
 
