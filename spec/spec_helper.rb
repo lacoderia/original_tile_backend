@@ -6,7 +6,6 @@ SimpleCov.start
 
 require 'rails/test_help'
 require 'rspec/rails'
-#require 'rspec/active_job'
 require 'capybara/rspec'
 require 'capybara/rails'
 require 'factory_girl'
@@ -21,17 +20,11 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
 
-  # Active Job
-#  config.include(RSpec::ActiveJob)
-
   # Authentication helpers
   config.include TestingSupport::DeviseHelpers
 
   # Avoid having to write FactoryGirl.create
   config.include FactoryGirl::Syntax::Methods
-
-  # Syntax candy over capybara uglyness
-  #config.include TestingSupport::CapybaraHelpers
 
   # Route helpers
   config.include Rails.application.routes.url_helpers
