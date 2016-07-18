@@ -19,7 +19,7 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
   end
 
   form do |f|
-    f.inputs "Modificación de créditos" do
+    f.inputs "Detalles de clientes" do
       f.input :first_name, label: "Nombres", :input_html => { :disabled => true, :style => "background-color: #d3d3d3;" }
       f.input :last_name, label: "Apellido", :input_html => { :disabled => true, :style => "background-color: #d3d3d3;" }
       f.input :email, label: "Email", :input_html => { :disabled => true, :style => "background-color: #d3d3d3;" }
