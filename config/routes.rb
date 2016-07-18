@@ -14,7 +14,13 @@ Rails.application.routes.draw do
   end
   
   resources :colors
-  resources :tiles
+
+  resources :tiles do
+    collection do
+      get 'tile_types', :to => 'tiles#tile_types'
+      get 'by_tile_type', :to => 'tiles#by_tile_type'
+    end
+  end
   resources :projects do
     collection do
       get 'by_user', :to => 'projects#by_user'

@@ -1,5 +1,4 @@
 class ProjectsController < ApiController
-  include ErrorSerializer
   
   before_action :authenticate_user!
     
