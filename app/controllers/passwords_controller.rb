@@ -2,8 +2,6 @@ class PasswordsController < Devise::PasswordsController
   include ErrorSerializer
 
   authorize_resource :class => false
-  
-  skip_before_filter :verify_authenticity_token, :only => [:create, :update]
 
   def create
     self.resource = User.find_by_email(resource_params['email'])
