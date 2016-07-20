@@ -5,10 +5,10 @@ feature 'RegistrationsController' do
 
       it 'successfully creates user and doesnt log him initially, then after being activated he can log in' do
 
-        new_user = { first_name: "test", last_name: "user", email: "test@user.com", password: "12345678", password_confirmation: "12345678" }
+        new_user = { first_name: "test", last_name: "user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", country: "Mexico", city: "Rose", state: "Luigi" }
         
         # Validates user creation
-        page = register_with_service new_user 
+        page = register_with_service(new_user, true)
         response = JSON.parse(page.body)
         expect(response['user']['first_name']).to eq new_user[:first_name]
         user_01 = User.find(response['user']['id'])
@@ -31,6 +31,24 @@ feature 'RegistrationsController' do
         response = JSON.parse(page.body)
         expect(response["user"]["id"]).to eql user_01.id
 
+      end
+
+       it 'cant create user if it doesnt contain required fields' do
+
+        new_user = { first_name: "test", last_name: "user", email: "test@user.com", password: "12345678", password_confirmation: "12345678" }
+        
+        # Validates user creation
+        page = register_with_service(new_user, true)
+        response = JSON.parse(page.body)
+        expect(response['errors'].last['title']).to eql "No se pudo crear el usuario."  
+
+        # Missing internal attribute
+        new_user = { first_name: "test", last_name: "user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", country: "Mexico", city: "Rose", state: "Luigi" }
+        
+        page = register_with_service(new_user, nil)
+        response = JSON.parse(page.body)
+        expect(response['errors'].first['title']).to eql "Se necesita saber si el usuario es interno o externo."  
+        
       end
 
     end

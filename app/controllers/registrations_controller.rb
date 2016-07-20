@@ -6,20 +6,21 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :update_sanitized_params, if: :devise_controller?
 
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :active)}
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:first_name, :last_name, :email, :password, :password_confirmation, :active, :reference, :country, :city, :state)}
   end
 
   def create
     build_resource(sign_up_params)
     @user = resource
-    saved = @user.register
-    if saved
-      @user.save
-      #SendEmailJob.perform_later("welcome", @user, nil)
-      #new_auth_header = @user.create_new_auth_token
-      #response.headers.merge!(new_auth_header)
-      #sign_in @user
-      success @user
+    can_be_saved = @user.register params[:internal]
+    if can_be_saved and @user.save
+      if params[:internal].to_s == "true"
+        @user.update_attribute(:roles, [Role.internal])
+        success @user
+      elsif params[:internal].to_s == "false"
+        @user.update_attribute(:roles, [Role.external])
+        success @user
+      end
     else
       @user.errors.add(:incorrect_registration, "No se pudo crear el usuario.")
       error @user

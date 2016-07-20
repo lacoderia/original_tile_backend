@@ -7,6 +7,9 @@ FactoryGirl.define do
     password '12345678'
     password_confirmation '12345678'
     active true
+    country "Mexico"
+    city "CDMX"
+    state "CDMX"
     roles {[FactoryGirl.create(:internal_role)]}
   end
 
