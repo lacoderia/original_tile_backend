@@ -11,9 +11,9 @@ Rails.application.routes.draw do
     match 'users/password', :to => "passwords#create", :via => [:post, :options]
     get 'logout', :to => "sessions#destroy"
     get 'session', :to => "sessions#get"
+    match 'auth/password', :to => "passwords#update", :via => [:put, :options]
   end
   
-  match 'auth/password', :to => "passwords#update", :via => [:put, :options]
 
   resources :colors
 
