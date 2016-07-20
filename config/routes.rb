@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     get 'session', :to => "sessions#get"
   end
   
+  match 'auth/password', :to => "passwords#update", :via => [:put, :options]
+
   resources :colors
 
   resources :tiles do

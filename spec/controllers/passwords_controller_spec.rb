@@ -40,7 +40,7 @@ feature 'PasswordsController' do
       password_reset_request = { utf8: 'V', user: { reset_password_token: token, password: new_password, password_confirmation: new_password } }
       page3 = nil
       with_rack_test_driver do
-        page3 = page.driver.put user_password_path, password_reset_request
+        page3 = page.driver.put auth_password_path, password_reset_request
       end
       response = JSON.parse(page3.body)
 
