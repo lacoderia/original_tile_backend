@@ -6,7 +6,7 @@ module TileTypeSerializer
     json = {}
     tile_types = []
     hash_tile_types.each do |k, v|
-      tile_types << { key: k, value: v }
+      tile_types << { key: k, value: v[0], centimeters: v[1], inches: v[2] }
     end
     json[:tile_types] = tile_types
     json

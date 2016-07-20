@@ -16,5 +16,11 @@ external_user = User.create(first_name: "External", last_name: "Quimare", email:
 admin_user = AdminUser.create!(email: 'admin@originalmissiontile.com', password: 'password', password_confirmation: 'password')
 
 color = Color.create!(name: "red", hex_value: "#FF0000", active: true)
-tile = Tile.create!(url: "file_url", tile_type: "3x3", active: true)
 project = Project.create!(url: "file_url", name: "saved project 1", user_id: internal_user.id)
+
+tile_01 = Tile.create!(url: "file_url", tile_type: "3x3", active: true)
+tile_02 = Tile.create!(url: "file_url", tile_type: "4x4", active: true)
+tile_03 = Tile.create!(url: "file_url", tile_type: "6x6", active: true)
+tile_04 = Tile.create!(url: "file_url", tile_type: "8x8", active: true)
+tile_05 = Tile.create!(url: "file_url", tile_type: "10x10", active: true)
+tile_06 = Tile.create!(url: "file_url", tile_type: "12x12", active: true)
