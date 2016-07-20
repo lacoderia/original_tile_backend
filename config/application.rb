@@ -19,7 +19,7 @@ module OriginalTile
         resource '*', 
           :headers => :any, 
           :expose  => ['access-token', 'expiry', 'token-type', 'uid', 'client'],
-          :methods => [:get, :post, :options]
+          :methods => [:get, :post, :options, :put]
       end
     end
 
