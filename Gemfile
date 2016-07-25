@@ -1,17 +1,16 @@
 source 'https://rubygems.org'
 
 gem 'cancancan'
-#gem 'devise'
-gem 'devise',      '> 4.x'
+gem 'devise'
 gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'activeadmin', github: 'activeadmin'
+gem "paperclip", "~> 5.0.0"
 
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'ransack',    github: 'activerecord-hackery/ransack'
 gem 'formtastic', github: 'justinfrench/formtastic'
-gem 'draper',     github: 'audionerd/draper', branch: 'rails5', ref: 'e816e0e587'
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'draper',              '> 3.x'
 gem 'active_model_serializers'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -21,7 +20,7 @@ gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails',          github: 'rails/sass-rails' # For Sprockets 4
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

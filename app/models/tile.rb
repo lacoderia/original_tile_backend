@@ -1,5 +1,8 @@
 class Tile < ApplicationRecord
 
+  has_attached_file :image, default_url: "missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
   TYPES = [
     [ '3x3', '3x3" (7.5x7.5cm)', 7.5, 3],
     [ '4x4', '4x4" (10x10cm)', 10, 4],
