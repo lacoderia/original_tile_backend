@@ -9,6 +9,8 @@ class TileSerializer < ActiveModel::Serializer
     file = File.open(object.image.path, "rb")
     str = file.read
     file.close
+    str.gsub!("\n","")
     str
   end
+  
 end
