@@ -4,4 +4,9 @@ class TileSerializer < ActiveModel::Serializer
   def image
     object.image.url
   end
+
+  def xml
+    file = File.open(object.image.path, "rb")
+    file.read
+  end
 end
