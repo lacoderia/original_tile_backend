@@ -4,24 +4,21 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
 
   permit_params :active
 
-  filter :first_name, :label => "Nombre"
-  filter :last_name, :label => "Apellido"
+  filter :name, :label => "Nombre"
   filter :roles, :label => "Roles"
   filter :active, :label => "Activo"
   
   config.sort_order = 'created_at_desc'
 
   index :title => "Clientes" do
-    column "Nombre", :first_name
-    column "Apellido", :last_name
+    column "Nombre", :name
     column "Activo", :active
     actions :defaults => true
   end
 
   form do |f|
     f.inputs "Detalles de clientes" do
-      f.input :first_name, label: "Nombres", :input_html => { :disabled => true, :style => "background-color: #d3d3d3;" }
-      f.input :last_name, label: "Apellido", :input_html => { :disabled => true, :style => "background-color: #d3d3d3;" }
+      f.input :name, label: "Nombre", :input_html => { :disabled => true, :style => "background-color: #d3d3d3;" }
       f.input :email, label: "Email", :input_html => { :disabled => true, :style => "background-color: #d3d3d3;" }
       f.input :active
     end

@@ -4,6 +4,8 @@ class User < ApplicationRecord
           :recoverable, :rememberable, :trackable, :validatable
   #        :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
+
+  before_update :send_email_after_activation
   
   has_and_belongs_to_many :roles
   has_many :projects
@@ -12,8 +14,7 @@ class User < ApplicationRecord
   scope :active, -> {where(active: true)}
 
   validates :email, presence: true  
-  validates :first_name, presence: true  
-  validates :last_name, presence: true  
+  validates :name, presence: true  
   validates :country, presence: true  
   validates :state, presence: true  
   validates :city, presence: true  
@@ -34,4 +35,13 @@ class User < ApplicationRecord
       true
     end
   end
+
+  private
+
+    def send_email_after_activation
+      if self.active?
+        ApplicationMailer.welcome_email(self).deliver_now!
+      end
+    end
+
 end

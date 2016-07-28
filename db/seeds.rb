@@ -10,8 +10,8 @@
 internal_user_role = Role.create(name: 'internal_user')
 external_user_role = Role.create(name: 'external_user')
 
-internal_user = User.create(first_name: "Internal", last_name: "Quimare", email: "internal@email.com", roles: [internal_user_role], password: 'password', password_confirmation: 'password', active: true)
-external_user = User.create(first_name: "External", last_name: "Quimare", email: "external@email.com", roles: [external_user_role], password: 'password', password_confirmation: 'password', active: true)
+internal_user = User.create(name: "Internal Quimare", email: "internal@email.com", roles: [internal_user_role], password: 'password', password_confirmation: 'password', active: true)
+external_user = User.create(name: "External Quimare", email: "external@email.com", roles: [external_user_role], password: 'password', password_confirmation: 'password', active: true)
 
 admin_user = AdminUser.create!(email: 'admin@originalmissiontile.com', password: 'password', password_confirmation: 'password')
 

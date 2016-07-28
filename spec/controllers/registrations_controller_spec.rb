@@ -5,12 +5,12 @@ feature 'RegistrationsController' do
 
       it 'successfully creates user and doesnt log him initially, then after being activated he can log in' do
 
-        new_user = { first_name: "test", last_name: "user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", country: "Mexico", city: "Rose", state: "Luigi" }
+        new_user = { name: "test user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", country: "Mexico", city: "Rose", state: "Luigi" }
         
         # Validates user creation
         page = register_with_service(new_user, true)
         response = JSON.parse(page.body)
-        expect(response['user']['first_name']).to eq new_user[:first_name]
+        expect(response['user']['name']).to eq new_user[:name]
         user_01 = User.find(response['user']['id'])
         expect(user_01.active).to be false
         
@@ -35,7 +35,7 @@ feature 'RegistrationsController' do
 
        it 'cant create user if it doesnt contain required fields' do
 
-        new_user = { first_name: "test", last_name: "user", email: "test@user.com", password: "12345678", password_confirmation: "12345678" }
+        new_user = { name: "test user", email: "test@user.com", password: "12345678", password_confirmation: "12345678" }
         
         # Validates user creation
         page = register_with_service(new_user, true)
@@ -43,7 +43,7 @@ feature 'RegistrationsController' do
         expect(response['errors'].last['title']).to eql "No se pudo crear el usuario."  
 
         # Missing internal attribute
-        new_user = { first_name: "test", last_name: "user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", country: "Mexico", city: "Rose", state: "Luigi" }
+        new_user = { name: "test user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", country: "Mexico", city: "Rose", state: "Luigi" }
         
         page = register_with_service(new_user, nil)
         response = JSON.parse(page.body)

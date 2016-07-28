@@ -5,6 +5,7 @@ FactoryGirl.define do
     tile_type '3x3'
     active true
     name 'test 3x3'
+    image nil
   end
 
 end
