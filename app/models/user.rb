@@ -5,10 +5,11 @@ class User < ApplicationRecord
   #        :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
-  before_update :send_email_after_activation
+  after_update :send_email_after_activation
   
   has_and_belongs_to_many :roles
   has_many :projects
+  has_many :emails
 
   scope :inactive, -> {where(active: false)}
   scope :active, -> {where(active: true)}
@@ -39,8 +40,9 @@ class User < ApplicationRecord
   private
 
     def send_email_after_activation
-      if self.active?
+      if self.active? and self.emails.where(email_type: "welcome_email").count < 1
         ApplicationMailer.welcome_email(self).deliver_now!
+        Email.create(user: self, email_status: "sent", email_type: "welcome_email")
       end
     end
 
