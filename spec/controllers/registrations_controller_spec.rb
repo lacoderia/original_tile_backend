@@ -13,12 +13,17 @@ feature 'RegistrationsController' do
         expect(response['user']['name']).to eq new_user[:name]
         user_01 = User.find(response['user']['id'])
         expect(user_01.active).to be false
+
+        expect(user_01.emails.count).to eql 0
         
         page = get_session 
         response = JSON.parse(page.body)
         expect(response["errors"][0]["title"]).to eql "No se ha iniciado sesión."
 
         user_01.update_attribute(:active, true)
+        
+        #Sending welcome email
+        expect(user_01.emails.count).to eql 1
 
         login_with_service user = { email: user_01.email, password: "12345678" }
         access_token_1, uid_1, client_1, expiry_1, token_type_1 = get_headers
@@ -30,6 +35,11 @@ feature 'RegistrationsController' do
         page = get_session 
         response = JSON.parse(page.body)
         expect(response["user"]["id"]).to eql user_01.id
+
+        #Only send email one time
+        user_01.update_attribute(:active, false)
+        user_01.update_attribute(:active, true)
+        expect(user_01.emails.count).to eql 1
 
       end
 

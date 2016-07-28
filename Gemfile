@@ -5,6 +5,7 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'activeadmin', github: 'activeadmin'
+gem 'active_admin_datetimepicker'
 gem "paperclip", "~> 5.0.0"
 
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'

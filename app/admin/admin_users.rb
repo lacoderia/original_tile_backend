@@ -5,14 +5,27 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
   permit_params :active
 
   filter :name, :label => "Nombre"
-  filter :roles, :label => "Roles"
   filter :active, :label => "Activo"
+  filter :reference, :label => "Referencia"
+  filter :city, :label => "Ciudad"
+  filter :state, :label => "Estado"
+  filter :country, :label => "País"
+  filter :roles, :label => "Origen"
+  filter :created_at, :as => :date_time_range, :label => "Fecha"
   
   config.sort_order = 'created_at_desc'
 
   index :title => "Clientes" do
     column "Nombre", :name
     column "Activo", :active
+    column "Fecha", :created_at
+    column "Referencia", :reference
+    column "Ciudad", :city
+    column "Estado", :state
+    column "País", :country
+    column "Origen" do |user|
+      (user.role? :internal_user) ? "Interno" : "Externo"
+    end
     actions :defaults => true
   end
 
@@ -23,6 +36,33 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
       f.input :active
     end
     f.actions
+  end
+
+  csv do
+    column "Nombre" do |user|
+      user.name
+    end
+    column "Activo" do |user|
+      user.active
+    end
+    column "Fecha" do |user|
+      user.created_at
+    end
+    column "Referencia" do |user|
+      user.reference
+    end
+    column "Ciudad" do |user|
+      user.city
+    end
+    column "Estado" do |user|
+      user.state
+    end
+    column "País" do |user|
+      user.country
+    end
+    column "Origen" do |user|
+      (user.role? :internal_user) ? "Interno" : "Externo"
+    end
   end
 
 end
