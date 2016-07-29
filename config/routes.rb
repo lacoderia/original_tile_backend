@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :tile_types
   resources :emails
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -20,7 +21,6 @@ Rails.application.routes.draw do
 
   resources :tiles do
     collection do
-      get 'tile_types', :to => 'tiles#tile_types'
       get 'by_tile_type', :to => 'tiles#by_tile_type'
     end
   end

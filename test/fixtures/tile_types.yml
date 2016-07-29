@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  key: MyString
+  value: MyString
+  centimeters: 1.5
+  inches: 1.5
+  active: false
+
+two:
+  key: MyString
+  value: MyString
+  centimeters: 1.5
+  inches: 1.5
+  active: false
