@@ -1,4 +1,4 @@
-class ColorsController < ApplicationController
+class ColorsController < ApiController 
 
   before_action :authenticate_user!
     
