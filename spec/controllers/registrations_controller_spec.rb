@@ -5,7 +5,7 @@ feature 'RegistrationsController' do
 
       it 'successfully creates user and doesnt log him initially, then after being activated he can log in' do
 
-        new_user = { name: "test user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", country: "Mexico", city: "Rose", state: "Luigi" }
+        new_user = { name: "test user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", location: "MX", country: "Mexico", city: "Rose", state: "Luigi" }
         
         # Validates user creation
         page = register_with_service(new_user, true)
@@ -53,7 +53,7 @@ feature 'RegistrationsController' do
         expect(response['errors'].last['title']).to eql "No se pudo crear el usuario."  
 
         # Missing internal attribute
-        new_user = { name: "test user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", country: "Mexico", city: "Rose", state: "Luigi" }
+        new_user = { name: "test user", email: "test@user.com", password: "12345678", password_confirmation: "12345678", location: "MX", country: "Mexico", city: "Rose", state: "Luigi" }
         
         page = register_with_service(new_user, nil)
         response = JSON.parse(page.body)

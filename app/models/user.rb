@@ -19,6 +19,7 @@ class User < ApplicationRecord
   validates :country, presence: true  
   validates :state, presence: true  
   validates :city, presence: true  
+  validates :location, presence: true  
 
   def role?(role)
     return !!self.roles.find_by_name(role)

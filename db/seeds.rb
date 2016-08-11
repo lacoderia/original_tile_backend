@@ -10,8 +10,8 @@
 internal_user_role = Role.create(name: 'internal_user')
 external_user_role = Role.create(name: 'external_user')
 
-internal_user = User.create(name: "Internal Quimare", email: "internal@email.com", roles: [internal_user_role], password: 'password', password_confirmation: 'password', active: true, city: "CDMX", country: "Mexico", state: "CDMX")
-external_user = User.create(name: "External Quimare", email: "external@email.com", roles: [external_user_role], password: 'password', password_confirmation: 'password', active: true, city: "CDMX", country: "Mexico", state: "CDMX")
+internal_user = User.create(name: "Internal Quimare", email: "internal@email.com", roles: [internal_user_role], password: 'password', password_confirmation: 'password', active: true, city: "CDMX", country: "Mexico", state: "CDMX", location: "MX")
+external_user = User.create(name: "External Quimare", email: "external@email.com", roles: [external_user_role], password: 'password', password_confirmation: 'password', active: true, city: "CDMX", country: "Mexico", state: "CDMX", location: "MX")
 
 admin_user = AdminUser.create!(email: 'admin@originalmissiontile.com', password: 'password', password_confirmation: 'password')
 

@@ -10,6 +10,7 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
   filter :city, :label => "Ciudad"
   filter :state, :label => "Estado"
   filter :country, :label => "País"
+  filter :location, :label => "Geo"
   filter :roles, :label => "Origen"
   filter :created_at, :as => :date_time_range, :label => "Fecha"
   
@@ -23,6 +24,7 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
     column "Ciudad", :city
     column "Estado", :state
     column "País", :country
+    column "Geo", :location
     column "Origen" do |user|
       (user.role? :internal_user) ? "Interno" : "Externo"
     end
@@ -59,6 +61,9 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
     end
     column "País" do |user|
       user.country
+    end
+    column "Geo" do |user|
+      user.location
     end
     column "Origen" do |user|
       (user.role? :internal_user) ? "Interno" : "Externo"
