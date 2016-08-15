@@ -15,7 +15,7 @@ class TileSerializer < ActiveModel::Serializer
       str = file.read
       file.close
       str.gsub!("\n","")
-      str
+      str.force_encoding("UTF-8")
     else
       ""
     end
