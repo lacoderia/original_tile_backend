@@ -4,7 +4,7 @@ class ColorsController < ApiController
     
   def index
     begin
-      colors = Color.active
+      colors = Color.active.order(order: :asc)
       render json: colors
     rescue Exception => e
       color = Color.new

@@ -5,7 +5,12 @@ class ApplicationMailer < ActionMailer::Base
 
   def welcome_email(user)
     @user = user
-    mail(to: user.email, subject: "Activación de cuenta")
+    mail(to: user.email, subject: "Account authorized")
+  end
+
+  def registration_email(user)
+    @user = user
+    mail(to: user.email, subject: "Your registration is being reviewed")
   end
   
 end

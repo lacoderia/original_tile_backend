@@ -4,7 +4,7 @@ class TileTypesController < ApiController
   
   def index
     begin
-      tile_types = TileType.active.order(created_at: :asc)
+      tile_types = TileType.active.order(centimeters: :desc)
       render json: tile_types 
     rescue Exception => e
       tile = TileType.new

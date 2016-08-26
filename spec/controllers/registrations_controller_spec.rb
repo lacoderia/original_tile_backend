@@ -14,16 +14,17 @@ feature 'RegistrationsController' do
         user_01 = User.find(response['user']['id'])
         expect(user_01.active).to be false
 
-        expect(user_01.emails.count).to eql 0
-        
+        #Sent registration email
+        expect(user_01.emails.count).to eql 1
+
         page = get_session 
         response = JSON.parse(page.body)
         expect(response["errors"][0]["title"]).to eql "No se ha iniciado sesión."
 
         user_01.update_attribute(:active, true)
         
-        #Sending welcome email
-        expect(user_01.emails.count).to eql 1
+        #Sent welcome email
+        expect(user_01.emails.count).to eql 2
 
         login_with_service user = { email: user_01.email, password: "12345678" }
         access_token_1, uid_1, client_1, expiry_1, token_type_1 = get_headers
@@ -39,7 +40,7 @@ feature 'RegistrationsController' do
         #Only send email one time
         user_01.update_attribute(:active, false)
         user_01.update_attribute(:active, true)
-        expect(user_01.emails.count).to eql 1
+        expect(user_01.emails.count).to eql 2
 
       end
 

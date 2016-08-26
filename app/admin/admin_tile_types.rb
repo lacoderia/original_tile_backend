@@ -4,6 +4,8 @@ ActiveAdmin.register TileType, :as => "Tipos" do
   
   permit_params :active, :key, :value, :centimeters, :inches
 
+  config.sort_order = 'centimeters_desc'
+  
   config.filters = false
 
   index :title => "Tipos" do

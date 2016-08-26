@@ -1,0 +1,21 @@
+<p><%= @user.name %>,</p>
+
+<p>Thanks for being interested in our tool, we will follow up with you shortly.</p>
+
+<% if @user.role? :internal_user %>
+  
+  <p>If you need immediate assistance you can call us or e-mail us.</p>
+
+  <p>
+  Original Mission Tile<br/>
+  Jorge de Avila No 100, San Juanico El Grande<br/>
+  San Luis Potosí, SLP 78414 | Mexico.<br/>
+  t: 011 (52) 444 240 4456<br/>
+  e-mail: sales@originalmissiontile.com<br/>
+  </p>
+
+<% else %>
+    
+  <p>If you need immediate assistance, please contact your reference '<%= @user.reference %>' for more information.</p>
+
+<% end %>

@@ -38,6 +38,11 @@ class User < ApplicationRecord
     end
   end
 
+  def send_email_after_registration
+    ApplicationMailer.registration_email(self).deliver_now!
+    Email.create(user: self, email_status: "sent", email_type: "registration_email")
+  end
+
   private
 
     def send_email_after_activation
