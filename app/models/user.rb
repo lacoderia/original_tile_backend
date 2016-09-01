@@ -30,7 +30,7 @@ class User < ApplicationRecord
     if user
       self.errors.add(:registration, "Ya existe un usuario registrado con ese correo electrónico.")
       false
-    elsif not internal or (internal.to_s != "true" and internal.to_s != "false")
+    elsif internal == nil or (internal.to_s != "true" and internal.to_s != "false")
       self.errors.add(:registration, "Se necesita saber si el usuario es interno o externo.")
       false
     else
