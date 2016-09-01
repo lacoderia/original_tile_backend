@@ -18,6 +18,7 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
 
   index :title => "Clientes" do
     column "Nombre", :name
+    column "Email", :email
     column "Activo", :active
     column "Fecha", :created_at
     column "Referencia", :reference
@@ -43,6 +44,9 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
   csv do
     column "Nombre" do |user|
       user.name
+    end
+    column "Email" do |user|
+      user.email
     end
     column "Activo" do |user|
       user.active
