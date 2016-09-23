@@ -16,7 +16,6 @@ Rails.application.routes.draw do
     match 'auth/password', :to => "passwords#update", :via => [:put, :options]
   end
   
-
   resources :colors
 
   resources :tiles do
@@ -27,6 +26,7 @@ Rails.application.routes.draw do
   resources :projects do
     collection do
       get 'by_user', :to => 'projects#by_user'
+      post 'save', :to => 'projects#save'
     end
   end
   resources :roles
