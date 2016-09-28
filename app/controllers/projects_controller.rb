@@ -23,5 +23,16 @@ class ProjectsController < ApiController
       render json: ErrorSerializer.serialize(project.errors), status: 500
     end
   end
+
+  def destroy
+    begin
+      projects_left = Project.delete_for_user(params[:id], current_user)
+      render json: projects_left
+    rescue Exception => e
+      project = Project.new
+      project.errors.add(:error_deleting_project, e.message)
+      render json: ErrorSerializer.serialize(project.errors), status: 500
+    end
+  end
   
 end
