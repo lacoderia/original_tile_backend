@@ -15,7 +15,7 @@ class ProjectsController < ApiController
 
   def save
     begin
-      project = Project.create!(url: params[:url], name: params[:name], user: current_user)
+      project = Project.create!(url: params[:url], name: params[:name], user: current_user, filename: params[:filename])
       render json: project
     rescue Exception => e
       project = Project.new

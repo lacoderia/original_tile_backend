@@ -3,6 +3,7 @@ FactoryGirl.define do
 
     url 'PDF_file'
     name 'test project name'
+    filename 'file.pdf'
     association :user, factory: :user
 
   end

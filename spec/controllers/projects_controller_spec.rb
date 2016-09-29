@@ -54,13 +54,14 @@ feature 'ProjectsController' do
       access_token_1, uid_1, client_1, expiry_1, token_type_1 = get_headers
       set_headers access_token_1, uid_1, client_1, expiry_1, token_type_1
 
-      new_project = { name: "Test proj", url: "test url"}
+      new_project = { name: "Test proj", url: "test url", filename: "filename.pdf"}
       with_rack_test_driver do
         page.driver.post save_projects_path, new_project
       end
 
       response = JSON.parse(page.body)
       expect(response["project"]["name"]).to eql "Test proj"
+      expect(response["project"]["filename"]).to eql "filename.pdf"
       project_id = response["project"]["id"]
       expect(Project.count).to eql 1
 
