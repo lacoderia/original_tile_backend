@@ -41,6 +41,7 @@ class User < ApplicationRecord
   def send_email_after_registration
     ApplicationMailer.registration_email(self).deliver_now!
     Email.create(user: self, email_status: "sent", email_type: "registration_email")
+    ApplicationMailer.request_registration_email(self).deliver_now!
   end
 
   private

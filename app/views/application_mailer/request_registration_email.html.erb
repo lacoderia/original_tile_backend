@@ -1,0 +1,8 @@
+<p>Nombre: <%= @user.name %> </p>
+<p>Tipo de usuario: <%= (@user.role? :internal_user) ? "interno" : "externo" %> </p>
+<p>Referencia: <%= @user.reference %></p>
+<p>Correo: <%= @user.email %></p>
+<p>Country: <%= @user.country %> </p>
+<p>State: <%= @user.state %> </p>
+<p>City: <%= @user.city %> </p>
+<p>Location: <%= @user.location %> </p>

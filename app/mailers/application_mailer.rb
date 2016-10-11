@@ -12,5 +12,10 @@ class ApplicationMailer < ActionMailer::Base
     @user = user
     mail(to: user.email, subject: "Your registration is being reviewed")
   end
+
+  def request_registration_email(user)
+    @user = user
+    mail(to: "sales@originalmissiontile.com", subject: "Petición de acceso")
+  end
   
 end
