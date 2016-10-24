@@ -17,5 +17,11 @@ class ApplicationMailer < ActionMailer::Base
     @user = user
     mail(to: "sales@originalmissiontile.com", subject: "Petición de acceso")
   end
+
+  def budget_email(user, email, attachment)
+    @user = user
+    attachments.inline['project.pdf'] = File.read(attachment)
+    mail(to: email, subject: "Your Tile Design Project")
+  end
   
 end
