@@ -20,6 +20,9 @@ class User < ApplicationRecord
   validates :state, presence: true  
   validates :city, presence: true  
   validates :location, presence: true  
+  validates :address, presence: true  
+  validates :zip, presence: true  
+  validates :phone, presence: true  
 
   def role?(role)
     return !!self.roles.find_by_name(role)

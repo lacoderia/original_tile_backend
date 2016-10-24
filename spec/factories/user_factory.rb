@@ -10,6 +10,9 @@ FactoryGirl.define do
     location "MX"
     city "CDMX"
     state "CDMX"
+    address "Caracas Norte 324"
+    phone "55864192"
+    zip "07708"
     roles {[FactoryGirl.create(:internal_role)]}
   end
 
