@@ -22,6 +22,9 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
     column "Activo", :active
     column "Fecha", :created_at
     column "Referencia", :reference
+    column "Teléfono", :phone
+    column "Dirección", :address
+    column "Zip", :zip
     column "Ciudad", :city
     column "Estado", :state
     column "País", :country
@@ -57,8 +60,17 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
     column "Referencia" do |user|
       user.reference
     end
+    column "Teléfono" do |user|
+      user.phone
+    end
+    column "Dirección" do |user|
+      user.address
+    end
     column "Ciudad" do |user|
       user.city
+    end
+    column "Zip" do |user|
+      user.zip
     end
     column "Estado" do |user|
       user.state
