@@ -1,5 +1,6 @@
 Rails.application.configure do
   
+  ENV['PDF_PATH'] = "/Users/tonklis/git/original_tile/public"
   ENV['HOST'] = "localhost:3000"
   # Settings specified here will take precedence over those in config/application.rb.
 

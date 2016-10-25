@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     collection do
       get 'by_user', :to => 'projects#by_user'
       post 'save', :to => 'projects#save'
+      post 'send_by_email', :to => 'projects#send_by_email'
     end
   end
   resources :roles

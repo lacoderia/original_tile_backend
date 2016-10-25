@@ -1,6 +1,18 @@
 class ProjectsController < ApiController
   
   before_action :authenticate_user!
+
+  def send_by_email
+    begin
+      project = Project.find_by_id(params[:project_id]) 
+      project.send_by_email(current_user, params[:email])
+      render json: project
+    rescue Exception => e
+      project = Project.new
+      project.errors.add(:error_sending_project_by_email, e.message)
+      render json: ErrorSerializer.serialize(project.errors), status: 500
+    end
+  end
     
   def by_user
     begin

@@ -21,7 +21,7 @@ class ApplicationMailer < ActionMailer::Base
   def budget_email(user, email, attachment)
     @user = user
     attachments.inline['project.pdf'] = File.read(attachment)
-    mail(to: email, subject: "Your Tile Design Project")
+    mail(to: email, subject: "Tile Design Studio Project")
   end
   
 end

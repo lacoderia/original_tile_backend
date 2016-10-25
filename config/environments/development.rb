@@ -1,6 +1,7 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  ENV['PDF_PATH'] = ""
   ENV['HOST'] = "localhost:3000"
   
   # In the development environment your application's code is reloaded on

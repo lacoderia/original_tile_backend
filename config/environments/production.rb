@@ -1,5 +1,6 @@
 Rails.application.configure do
 
+  ENV['PDF_PATH'] = ""
   ENV['HOST'] = "servicios.coderia.mx"  
   # Settings specified here will take precedence over those in config/application.rb.
 
