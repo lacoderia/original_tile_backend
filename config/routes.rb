@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :tile_types
   resources :emails
   devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
 
   mount_devise_token_auth_for 'User', at: 'auth', :controllers => {:registrations => "registrations", :sessions => "sessions", :passwords => "passwords"}, defaults: { format: :json }
   
