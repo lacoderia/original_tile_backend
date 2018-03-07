@@ -15,7 +15,7 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
   filter :country, :label => "País"
   filter :location, :label => "Geo"
   filter :roles, :label => "Origen"
-  filter :created_at, :as => :date_time_range, :label => "Fecha"
+  filter :created_at, :label => "Fecha"
   
   config.sort_order = 'created_at_desc'
 

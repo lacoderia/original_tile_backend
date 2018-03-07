@@ -5,7 +5,7 @@ gem 'devise'
 gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'activeadmin', github: 'activeadmin'
-gem 'active_admin_datetimepicker'
+#gem 'active_admin_datetimepicker'
 
 #Vulnerability updates
 gem "nokogiri", "~> 1.8.1"
