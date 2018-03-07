@@ -6,6 +6,7 @@ FactoryGirl.define do
     centimeters 7.5
     inches 3
     active true
+    shape "square"
   end
 
 end

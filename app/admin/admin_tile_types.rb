@@ -2,7 +2,7 @@ ActiveAdmin.register TileType, :as => "Tipos" do
   
   actions :all, :except => [:show, :new, :destroy]
   
-  permit_params :active, :key, :value, :centimeters, :inches
+  permit_params :active, :key, :value, :centimeters, :inches, :shape
 
   config.sort_order = 'centimeters_desc'
   
@@ -14,6 +14,7 @@ ActiveAdmin.register TileType, :as => "Tipos" do
     column "Valor", :value
     column "Centimetros", :centimeters
     column "Pulgadas", :inches
+    column "Forma", :shape
     column "Activo", :active
     actions :defaults => true
     
@@ -25,6 +26,7 @@ ActiveAdmin.register TileType, :as => "Tipos" do
       f.input :value, label: "Valor"
       f.input :centimeters, label: "Centimetros"
       f.input :inches, label: "Pulgadas"
+      f.input :shape, label: "Forma"
       f.input :active, label: "Activo"
     end
     f.actions

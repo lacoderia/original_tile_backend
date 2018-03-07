@@ -19,8 +19,6 @@ feature 'ProjectsController' do
 
       response = JSON.parse(page.body)
       expect(response["project"]["id"]).to eql project.id 
-                  
-      
 
     end
 

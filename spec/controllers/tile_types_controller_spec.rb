@@ -1,7 +1,7 @@
 feature 'TileTypesController' do
 
   let!(:user_01){create(:user)}
-  let!(:tile_type_01){create(:tile_type)}
+  let!(:tile_type_01){create(:tile_type, shape: "hex")}
   let!(:tile_type_02){create(:tile_type, key: '4x4')}
   let!(:tile_type_03){create(:tile_type, key: '6x6', active: false)}
   
@@ -17,6 +17,7 @@ feature 'TileTypesController' do
       response = JSON.parse(page.body)
       expect(response["tile_types"].length).to be 2
       expect(response["tile_types"][0]["key"]).to eql tile_type_01.key
+      expect(response["tile_types"][0]["shape"]).to eql "hex" 
 
       tile_type_03.update_attribute(:active, true)
 
