@@ -6,7 +6,11 @@ gem 'devise_token_auth'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'activeadmin', github: 'activeadmin'
 gem 'active_admin_datetimepicker'
-gem "paperclip", "~> 5.0.0"
+
+#Vulnerability updates
+gem "nokogiri", "~> 1.8.1"
+gem "paperclip", "~> 5.2.0"
+gem 'pg', '~> 0.18'
 
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'ransack',    github: 'activerecord-hackery/ransack'
@@ -16,8 +20,6 @@ gem 'active_model_serializers'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
-# Use sqlite3 as the database for Active Record
-gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
