@@ -1,6 +1,6 @@
 ActiveAdmin.register TileType, :as => "Tipos" do
   
-  actions :all, :except => [:show, :new, :destroy]
+  actions :all, :except => [:show, :destroy]
   
   permit_params :active, :key, :value, :centimeters, :inches, :shape
 
@@ -25,8 +25,9 @@ ActiveAdmin.register TileType, :as => "Tipos" do
       f.input :key, label: "Tipo"
       f.input :value, label: "Valor"
       f.input :centimeters, label: "Centimetros"
-      f.input :inches, label: "Pulgadas"
-      f.input :shape, label: "Forma"
+      f.input :inches, label: "Pulgadas", as: :select, collection: TileType::INCHES.flatten
+      f.input :shape, label: "Forma", collection: TileType::TYPES.map{|t| t[0]}
+      
       f.input :active, label: "Activo"
     end
     f.actions
