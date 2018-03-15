@@ -15,7 +15,7 @@ class ApplicationMailer < ActionMailer::Base
 
   def request_registration_email(user)
     @user = user
-    mail(to: "sales@originalmissiontile.com", subject: "Design Studio registration / #{@user.name}", reply_to: @user.email)
+    mail(to: Config.request_registration_email, subject: "Design Studio registration / #{@user.name}", reply_to: @user.email)
   end
 
   def budget_email(user, email, attachment)

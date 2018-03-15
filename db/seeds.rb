@@ -31,3 +31,5 @@ tile_03 = Tile.create!(url: "file_url", tile_type: tile_type_03, active: true, n
 tile_04 = Tile.create!(url: "file_url", tile_type: tile_type_04, active: true, name: "cuatro 8x8")
 tile_05 = Tile.create!(url: "file_url", tile_type: tile_type_05, active: true, name: "cinco 10x10")
 tile_06 = Tile.create!(url: "file_url", tile_type: tile_type_06, active: true, name: "seis 12x12")
+
+Config.create(key: "request_registration_email", value: "sales@originalmissiontile.com")
