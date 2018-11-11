@@ -5,7 +5,7 @@ class User < ApplicationRecord
   #        :confirmable, :omniauthable
   include DeviseTokenAuth::Concerns::User
 
-  after_update :send_email_after_activation
+  #after_update :send_email_after_activation
   
   has_and_belongs_to_many :roles
   has_many :projects
@@ -42,9 +42,11 @@ class User < ApplicationRecord
   end
 
   def send_email_after_registration
-    ApplicationMailer.registration_email(self).deliver_now!
-    Email.create(user: self, email_status: "sent", email_type: "registration_email")
-    ApplicationMailer.request_registration_email(self).deliver_now!
+    #ApplicationMailer.registration_email(self).deliver_now!
+    #Email.create(user: self, email_status: "sent", email_type: "registration_email")
+    #ApplicationMailer.request_registration_email(self).deliver_now!
+    ApplicationMailer.welcome_email(self).deliver_now!
+    Email.create(user: self, email_status: "sent", email_type: "welcome_email")
   end
 
   private
