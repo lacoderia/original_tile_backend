@@ -16,13 +16,11 @@ class RegistrationsController < Devise::RegistrationsController
     if can_be_saved and @user.save
       if params[:internal].to_s == "true"
         @user.update_attribute(:roles, [Role.internal])
-        @user.send_email_after_registration
-        success @user
       elsif params[:internal].to_s == "false"
         @user.update_attribute(:roles, [Role.external])
-        @user.send_email_after_registration
-        success @user
       end
+      @user.send_email_after_registration
+      success @user
     else
       @user.errors.add(:incorrect_registration, "No se pudo crear el usuario.")
       error @user
