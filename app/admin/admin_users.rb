@@ -5,6 +5,7 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
   permit_params :active
 
   filter :name, :label => "Nombre"
+  filter :email, :label => "Email"
   filter :active, :label => "Activo"
   filter :reference, :label => "Referencia"
   filter :phone, :label => "Teléfono"
