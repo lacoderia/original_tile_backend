@@ -1,6 +1,7 @@
 ActiveAdmin.register Color, :as => "Colores" do
 
   actions :all, :except => [:show]
+  config.paginate = false
   
   permit_params :active, :name, :hex_value, :order
 
@@ -9,7 +10,7 @@ ActiveAdmin.register Color, :as => "Colores" do
 
   config.sort_order = 'order_asc'
 
-  index :title => "Colores", :paginate => false do
+  index :title => "Colores" do
     column "Nombre", :name
     column "Valor", :hex_value
     column "Preview" do |color|
