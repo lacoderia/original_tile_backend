@@ -16,6 +16,7 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
   filter :country, :label => "País"
   filter :location, :label => "Geo"
   filter :roles, :label => "Origen"
+  filter :last_sign_in_at, :label => "Última visita"
   filter :created_at, :label => "Fecha"
   
   config.sort_order = 'created_at_desc'
@@ -35,6 +36,9 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
     column "Geo", :location
     column "Origen" do |user|
       (user.role? :internal_user) ? "Interno" : "Externo"
+    end
+    column "Última visita", :last_sign_in_at, sortable: :last_sign_in_at do |user|
+      user.last_sign_in_at.nil? ? "Sin registro" : user.last_sign_in_at
     end
     actions :defaults => true
   end

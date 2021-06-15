@@ -1,5 +1,5 @@
 class TileSerializer < ActiveModel::Serializer
-  attributes :id, :image, :tile_type, :active, :name, :xml
+  attributes :id, :image, :tile_type, :active, :name, :xml, :created_at
 
   def image
     if object.try(:image)

@@ -9,11 +9,16 @@ ActiveAdmin.register Color, :as => "Colores" do
 
   config.sort_order = 'order_asc'
 
-  index :title => "Colores" do
+  index :title => "Colores", :paginate => false do
     column "Nombre", :name
     column "Valor", :hex_value
+    column "Preview" do |color|
+      "<div style='background-color: #{color.hex_value}'>&nbsp;</div>".html_safe
+    end
     column "Activo", :active
     column "Orden", :order
+    column "Creado", :created_at
+    column "Actualizado", :updated_at
     actions :defaults => true
   end
 
