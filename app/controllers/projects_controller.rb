@@ -27,11 +27,13 @@ class ProjectsController < ApiController
 
   def save
     begin
-      tiles = params[:tile_ids].map do |tile_id|
-        Tile.find(tile_id)
+      if params[:tile_ids]
+        tiles = params[:tile_ids].map do |tile_id|
+          Tile.find(tile_id)
+        end
       end
       project = Project.create!(url: params[:url], name: params[:name], user: current_user, filename: params[:filename])
-      project.tiles = tiles
+      project.tiles = tiles if tiles
       render json: project
     rescue Exception => e
       project = Project.new
