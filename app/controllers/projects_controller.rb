@@ -32,7 +32,7 @@ class ProjectsController < ApiController
           Tile.find(tile_id)
         end
       end
-      project = Project.create!(url: params[:url], name: params[:name], user: current_user, filename: params[:filename])
+      project = Project.create!(url: params[:url], name: params[:name], user: current_user, filename: params[:filename], description: params[:description])
       project.tiles = tiles if tiles
       render json: project
     rescue Exception => e
