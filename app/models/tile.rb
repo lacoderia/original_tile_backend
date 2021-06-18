@@ -4,6 +4,8 @@ class Tile < ApplicationRecord
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
  
   belongs_to :tile_type
+  has_many :project_tiles
+  has_many :projects, through: :project_tiles
   
   scope :active, -> {where(active: true)}
   scope :by_tile_type, ->(tile_type) {joins(:tile_type).where("tile_types.key = ?", tile_type)}

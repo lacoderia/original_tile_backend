@@ -46,7 +46,10 @@ feature 'ProjectsController' do
       access_token_1, uid_1, client_1, expiry_1, token_type_1 = get_headers
       set_headers access_token_1, uid_1, client_1, expiry_1, token_type_1
 
+      project_tile_count = ProjectTile.count
       page.driver.submit :delete, "/projects/#{project.id}", {}
+      # Testing dependent destroy on project_tiles on project deletion
+      expect(ProjectTile.count).to eql (project_tile_count - 3)
       response = JSON.parse(page.body)
       expect(response["projects"][0]["id"]).to eql project_2.id
 
@@ -76,6 +79,13 @@ feature 'ProjectsController' do
 
   context 'save projects for user' do
 
+    let!(:tile_type_01){create(:tile_type)}
+    let!(:tile_type_02){create(:tile_type, key: '4x4')}
+    
+    let!(:tile_1){create(:tile, tile_type: tile_type_01)}
+    let!(:tile_2){create(:tile, tile_type: tile_type_01, active: false)}
+    let!(:tile_3){create(:tile, tile_type: tile_type_02)}
+
     it 'should save the project for the user' do
       
       expect(Project.count).to eql 0
@@ -84,7 +94,7 @@ feature 'ProjectsController' do
       access_token_1, uid_1, client_1, expiry_1, token_type_1 = get_headers
       set_headers access_token_1, uid_1, client_1, expiry_1, token_type_1
 
-      new_project = { name: "Test proj", url: "test url", filename: "filename.pdf"}
+      new_project = { name: "Test proj", url: "test url", filename: "filename.pdf", tile_ids:[tile_1.id, tile_2.id, tile_3.id]}
       with_rack_test_driver do
         page.driver.post save_projects_path, new_project
       end
@@ -92,6 +102,7 @@ feature 'ProjectsController' do
       response = JSON.parse(page.body)
       expect(response["project"]["name"]).to eql "Test proj"
       expect(response["project"]["filename"]).to eql "filename.pdf"
+      expect(response["project"]["tiles"].count).to eql 3
       project_id = response["project"]["id"]
       expect(Project.count).to eql 1
 

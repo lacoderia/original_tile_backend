@@ -1,5 +1,8 @@
 class Project < ApplicationRecord
   belongs_to :user
+  has_many :project_tiles, dependent: :destroy
+  has_many :tiles, through: :project_tiles
+  
   scope :by_user_id, -> (id) {where(user_id: id)}
 
   def self.delete_for_user project_id, current_user

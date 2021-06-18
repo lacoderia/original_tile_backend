@@ -27,11 +27,15 @@ class ProjectsController < ApiController
 
   def save
     begin
+      tiles = params[:tile_ids].map do |tile_id|
+        Tile.find(tile_id)
+      end
       project = Project.create!(url: params[:url], name: params[:name], user: current_user, filename: params[:filename])
+      project.tiles = tiles
       render json: project
     rescue Exception => e
       project = Project.new
-      project.errors.add(:error_getting_projects, e.message)
+      project.errors.add(:error_saving_projects, e.message)
       render json: ErrorSerializer.serialize(project.errors), status: 500
     end
   end
