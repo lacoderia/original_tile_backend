@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210618215247) do
+ActiveRecord::Schema.define(version: 20210622051748) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -116,16 +116,16 @@ ActiveRecord::Schema.define(version: 20210618215247) do
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "active",                 default: true
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.string   "provider",               default: "email", null: false
-    t.string   "uid",                    default: "",      null: false
-    t.string   "encrypted_password",     default: "",      null: false
+    t.boolean  "active",                    default: true
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "provider",                  default: "email", null: false
+    t.string   "uid",                       default: "",      null: false
+    t.string   "encrypted_password",        default: "",      null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,       null: false
+    t.integer  "sign_in_count",             default: 0,       null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -140,6 +140,15 @@ ActiveRecord::Schema.define(version: 20210618215247) do
     t.string   "address"
     t.string   "phone"
     t.string   "zip"
+    t.string   "company_name"
+    t.string   "job_title"
+    t.string   "business_type"
+    t.string   "type_of_installation"
+    t.string   "about_us"
+    t.string   "project_references"
+    t.string   "designs_quantities"
+    t.text     "complete_delivery_address"
+    t.text     "message"
     t.index ["email"], name: "index_users_on_email", using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree

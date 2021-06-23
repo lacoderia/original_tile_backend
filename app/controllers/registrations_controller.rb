@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
   before_filter :update_sanitized_params, if: :devise_controller?
 
   def update_sanitized_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation, :active, :reference, :location, :country, :city, :state, :address, :zip, :phone])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :password_confirmation, :active, :reference, :location, :country, :city, :state, :address, :zip, :phone, :company_name, :job_title, :business_type, :type_of_installation, :about_us, :project_references, :designs_quantities, :complete_delivery_address, :message])
   end
 
   def create
