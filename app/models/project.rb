@@ -16,7 +16,7 @@ class Project < ApplicationRecord
   end
 
   def send_by_email user, email 
-    ApplicationMailer.budget_email(user, email, "#{ENV['PDF_PATH']}/#{self.filename}").deliver_now!    
+    ApplicationMailer.budget_email(user, email, self).deliver_now!    
   end
 
 end

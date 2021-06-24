@@ -1,6 +1,7 @@
 ActiveAdmin.register User, :as => "Todos_los_usuarios" do
+  menu if: proc{current_admin_user.role?("superadmin")}
 
-  actions :all, :except => [:new, :show]
+  actions :all, :except => [:new]
 
   permit_params :active
 
@@ -41,6 +42,87 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
       user.last_sign_in_at.nil? ? "Sin registro" : user.last_sign_in_at
     end
     actions :defaults => true
+  end
+
+  show do |user|
+  
+    attributes_table do
+
+      row "Nombre" do
+        user.name
+      end
+      row "Email" do
+        user.email
+      end
+      row "Active" do
+        user.active
+      end
+      row "Fecha" do
+        user.created_at
+      end
+      row "Fecha" do
+        user.reference
+      end
+      row "Teléfono" do
+        user.phone
+      end
+      row "Fecha" do
+        user.created_at
+      end
+      row "Dirección" do
+        user.address
+      end
+      row "Zip" do
+        user.zip
+      end
+      row "Ciudad" do
+        user.city
+      end
+      row "Estado" do
+        user.state
+      end
+      row "País" do
+        user.country
+      end
+      row "Geo" do
+        user.location
+      end
+      row "Origen" do
+        (user.role? :internal_user) ? "Interno" : "Externo"
+      end
+      row "Última visita" do
+        user.last_sign_in_at.nil? ? "Sin registro" : user.last_sign_in_at
+      end
+      row "Empresa" do
+        user.company_name
+      end
+      row "Puesto" do
+        user.job_title
+      end
+      row "Tipo de negocio" do
+        user.business_type
+      end
+      row "Tipo de instalación" do
+        user.type_of_installation
+      end
+      row "Cómo escuchó sobre nosotros?" do
+        user.about_us
+      end
+      row "Referencias de proyecto" do
+        user.project_references
+      end
+      row "Tipo de diseños y cantidad" do
+        user.designs_quantities
+      end
+      row "Dirección de envío" do
+        user.complete_delivery_address
+      end
+      row "Mensaje" do
+        user.message
+      end
+
+    end
+
   end
 
   form do |f|

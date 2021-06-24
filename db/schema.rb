@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210622051748) do
+ActiveRecord::Schema.define(version: 20210624013801) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,13 @@ ActiveRecord::Schema.define(version: 20210622051748) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "admin_users_roles", id: false, force: :cascade do |t|
+    t.integer "admin_user_id"
+    t.integer "role_id"
+    t.index ["admin_user_id"], name: "index_admin_users_roles_on_admin_user_id", using: :btree
+    t.index ["role_id"], name: "index_admin_users_roles_on_role_id", using: :btree
   end
 
   create_table "colors", force: :cascade do |t|
@@ -154,6 +161,8 @@ ActiveRecord::Schema.define(version: 20210622051748) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
 
+  add_foreign_key "admin_users_roles", "admin_users"
+  add_foreign_key "admin_users_roles", "roles"
   add_foreign_key "project_tiles", "projects"
   add_foreign_key "project_tiles", "tiles"
   add_foreign_key "projects", "users"

@@ -1,4 +1,5 @@
 ActiveAdmin.register TileType, :as => "Tipos" do
+  menu if: proc{current_admin_user.role?("superadmin")}
   
   actions :all, :except => [:show, :destroy]
   

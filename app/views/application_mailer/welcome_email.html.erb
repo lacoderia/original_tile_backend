@@ -4,9 +4,11 @@
 
 <% if @user.role? :internal_user %>
 
-  <p>You can start using it <a href='<%="http://#{ENV['HOST']}" %>'>here</a>.</p>
+  <p>You can start working on your Cement Tile's designs to create your own <a href='<%="http://#{ENV['HOST']}" %>'>here</a>!</p>
 
 <% else %>
+  
+  <p>You can start working on your Cement Tile's designs to create your own!</p>
     
   <p>Please contact your reference '<%= @user.reference %>' for more information.</p>
 

@@ -18,10 +18,11 @@ class ApplicationMailer < ActionMailer::Base
     mail(to: Config.request_registration_email, subject: "Design Studio registration / #{@user.name}", reply_to: @user.email)
   end
 
-  def budget_email(user, email, attachment)
+  def budget_email(user, email, project)
+    attachment = "#{ENV['PDF_PATH']}/#{project.filename}" 
     @user = user
     attachments.inline['project.pdf'] = File.read(attachment)
-    mail(to: email, subject: "Tile Design Studio Project")
+    mail(to: email, bcc: "orders@originalmissiontile.com, customers@originalmissiontile.com", subject: "Design Studio | #{@user.name} + #{project.name}")
   end
   
 end

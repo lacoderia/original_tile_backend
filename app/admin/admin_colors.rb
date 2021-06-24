@@ -1,5 +1,7 @@
 ActiveAdmin.register Color, :as => "Colores" do
 
+  menu if: proc{current_admin_user.role?("superadmin")}
+
   actions :all, :except => [:show]
   config.paginate = false
   

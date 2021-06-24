@@ -1,5 +1,6 @@
 class Role < ApplicationRecord
   has_and_belongs_to_many :users
+  has_and_belongs_to_many :admin_users
 
   def self.internal
     internal_role = Role.find_by_name("internal_user")
