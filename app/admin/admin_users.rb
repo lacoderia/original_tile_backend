@@ -19,7 +19,7 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
   filter :roles, :label => "Origen"
   filter :last_sign_in_at, :label => "Última visita"
   filter :created_at, :label => "Fecha"
-  
+
   config.sort_order = 'created_at_desc'
 
   index :title => "Clientes" do
@@ -45,7 +45,7 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
   end
 
   show do |user|
-  
+
     attributes_table do
 
       row "Nombre" do
@@ -60,14 +60,11 @@ ActiveAdmin.register User, :as => "Todos_los_usuarios" do
       row "Fecha" do
         user.created_at
       end
-      row "Fecha" do
+      row "Referencia" do
         user.reference
       end
       row "Teléfono" do
         user.phone
-      end
-      row "Fecha" do
-        user.created_at
       end
       row "Dirección" do
         user.address
