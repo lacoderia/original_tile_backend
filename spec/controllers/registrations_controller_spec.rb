@@ -15,8 +15,8 @@ feature 'RegistrationsController' do
         # Changed from false to true -- production has true value as well
         expect(user_01.active).to be true 
 
-        #Sent registration email
-        expect(user_01.emails.count).to eql 1
+        #Sent registration email and welcome email
+        expect(user_01.emails.count).to eql 2
 
         page = get_session 
         response = JSON.parse(page.body)
@@ -24,8 +24,7 @@ feature 'RegistrationsController' do
 
         user_01.update_attribute(:active, true)
         
-        #Sent welcome email -- changed from 2 to 1 because it is activated since the creation
-        expect(user_01.emails.count).to eql 1
+        expect(user_01.emails.count).to eql 2
 
         login_with_service user = { email: user_01.email, password: "12345678" }
         access_token_1, uid_1, client_1, expiry_1, token_type_1 = get_headers
@@ -42,7 +41,7 @@ feature 'RegistrationsController' do
         user_01.update_attribute(:active, false)
         user_01.update_attribute(:active, true)
         #Changed from 2 to 1 - same as line 27
-        expect(user_01.emails.count).to eql 1
+        expect(user_01.emails.count).to eql 2
 
       end
 
