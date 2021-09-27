@@ -8,7 +8,7 @@ gem 'activeadmin', github: 'activeadmin'
 #gem 'active_admin_datetimepicker'
 
 #Vulnerability updates
-gem "nokogiri", "~> 1.8.1"
+gem "nokogiri", "~> 1.12.5"
 gem "paperclip", "~> 5.2.0"
 gem 'pg', '~> 0.18'
 
